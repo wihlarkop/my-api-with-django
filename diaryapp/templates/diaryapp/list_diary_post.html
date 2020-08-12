@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Diary Apps</title>
 </head>
 <body>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit"/>
+    </form>
 
+    {% for diary in list %}
+        {{ diary.title }}
+        {{ diary.content|safe }}
+    {% endfor %}
+</div>
 </body>
 </html>
