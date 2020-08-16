@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+
 from .models import DiaryPost
 from .forms import DiaryPostForm
 
@@ -13,14 +14,13 @@ def list_diary_post(request):
         else:
             form = DiaryPostForm()
     context = {
-        'list': diarys,
+        'diarys': diarys,
         'form': form,
     }
+    return render(request, 'diaryapp/index.html', context=context)
 
-    return render(request, 'diaryapp/list_diary_post.html', context=context)
 
-
-def add_diary_post(request):
+def detail_diary_post(request):
     pass
 
 

@@ -9,5 +9,5 @@ class DiaryPostForm(forms.ModelForm):
         fields = ('title', 'content')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'content': forms.CharField(widget=CKEditorWidget)
+            'content': forms.CharField(widget=CKEditorWidget(attrs={'class': 'form-control'}))
         }

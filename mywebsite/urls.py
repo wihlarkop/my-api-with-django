@@ -8,4 +8,5 @@ urlpatterns = [
     path('diary/', include('diaryapp.urls', namespace='diary')),
     path('todo/', include('todoapp.urls', namespace='todo')),
     path('yellowpages/', include('yellowpagesapp.urls', namespace='yellowpages')),
+    path('portofolio/', include('portofolioapp.urls', namespace='portofolio'))
 ]
