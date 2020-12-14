@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,3 +11,8 @@ urlpatterns = [
     path('yellowpages/', include('yellowpagesapp.urls', namespace='yellowpages')),
     path('portofolio/', include('portofolioapp.urls', namespace='portofolio'))
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls)), ]

@@ -5,7 +5,7 @@ from .forms import DiaryPostForm
 
 
 def list_diary_post(request):
-    diarys = DiaryPost.objects.all()
+    diarys = DiaryPost.objects.select_related('created_by').all()
     form = DiaryPostForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
