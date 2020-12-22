@@ -30,10 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'debug_toolbar',
-    'diaryapp',
-    'todoapp',
-    'blogapp',
-    'yellowpagesapp',
+    'diaryapp.apps.DiaryappConfig',
+    'todoapp.apps.TodoappConfig',
+    'blogapp.apps.BlogappConfig',
+    'yellowpagesapp.apps.YellowpagesappConfig',
 
 ]
 
@@ -107,7 +107,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
