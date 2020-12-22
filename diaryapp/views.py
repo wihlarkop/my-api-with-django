@@ -18,7 +18,7 @@ def list_diary_post(request):
     return JsonReseponse(list_post, code=200)
 
 
-def detail_diary_post(request):
+def create_diary_post(request):
     pass
 
 
