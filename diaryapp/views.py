@@ -1,7 +1,7 @@
 from asgiref.sync import sync_to_async
 
-from utils.response_data import JsonReseponse
-from utils.string_converter import convert_format_datetime_to_string
+from utils.response_data import JsonResponse
+from utils.string_converter import convert_format_datetime_from_queryset
 from .models import DiaryPost
 
 
@@ -13,7 +13,7 @@ def list_diary_post(request):
 
     for data in query:
         raw_data_created_at = str(data.created_at)
-        created_at = convert_format_datetime_to_string(raw_data_created_at)
+        created_at = convert_format_datetime_from_queryset(raw_data_created_at)
 
         list_post.append({
             'title': data.title,
@@ -22,7 +22,7 @@ def list_diary_post(request):
             'author': data.created_by.username
         })
 
-    return JsonReseponse(list_post, code=200, messages='Success Get Diary Data')
+    return JsonResponse(list_post, code=200, messages='Success Get Diary Data')
 
 
 def create_diary_post(request):

@@ -1,7 +1,7 @@
 from django.http import JsonResponse as response_json
 
 
-def JsonReseponse(data, meta=None, messages=None, code=200):
+def JsonResponse(data, meta=None, messages=None, code=200):
     if meta is None:
         meta = {}
 
