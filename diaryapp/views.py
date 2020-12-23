@@ -1,9 +1,7 @@
-from datetime import datetime
-
 from asgiref.sync import sync_to_async
 
 from utils.response_data import JsonReseponse
-from utils.string_converter import convert_string_data_to_datetime
+from utils.string_converter import convert_format_datetime_to_string
 from .models import DiaryPost
 
 
@@ -15,7 +13,7 @@ def list_diary_post(request):
 
     for data in query:
         raw_data_created_at = str(data.created_at)
-        created_at = convert_string_data_to_datetime(raw_data_created_at)
+        created_at = convert_format_datetime_to_string(raw_data_created_at)
 
         list_post.append({
             'title': data.title,
