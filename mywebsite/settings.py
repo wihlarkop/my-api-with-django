@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -145,6 +145,7 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
 }
 
-LIMIT = 10
-DEFAULT_LIMIT = 20
-MAX_LIMIT = 2000
+LIMIT = int(os.getenv('LIMIT'))
+OFFSET = int(os.getenv('OFFSET'))
+DEFAULT_LIMIT = int(os.getenv('DEFAULT_LIMIT'))
+MAX_LIMIT = int(os.getenv('MAX_LIMIT'))
