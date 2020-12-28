@@ -1,8 +1,13 @@
-from asgiref.sync import sync_to_async
+import json
 
+from asgiref.sync import sync_to_async
+from django.core.exceptions import ValidationError, FieldError
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.views import auth_login
+
+from .models import DiaryPost
 from utils.response_data import JsonResponse
 from utils.string_converter import convert_format_datetime_from_queryset
-from .models import DiaryPost
 
 
 @sync_to_async
@@ -25,8 +30,23 @@ def list_diary_post(request):
     return JsonResponse(list_post, code=200, messages='Success Get Diary Data')
 
 
-def create_diary_post(request):
-    pass
+@csrf_exempt
+def add_diary_post(request):
+    body = json.loads(request.body)
+    title = body.get('title')
+    content = body.get('title')
+    # if title == '':
+    #     raise FieldError('value is required')
+    diary_data = {
+        'title': title,
+        'content': content,
+    }
+
+    # diary = DiaryPost.objects.create(**diary_data)
+    diary = DiaryPost(**diary_data)
+    diary.save()
+
+    return JsonResponse(data=diary_data, messages='Success Add Diary')
 
 
 def edit_diary_post(request):
