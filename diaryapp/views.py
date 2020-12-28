@@ -5,10 +5,16 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import DiaryPost
 from utils.response_data import JsonResponse
 from utils.string_converter import convert_format_datetime_from_queryset
+from utils.pagination import get_page_limit_offset_from_limit_page
 
 
 async def list_diary_post(request):
     query = await DiaryPost.get_list_diary_posts()
+
+    page, limit, offset = get_page_limit_offset_from_limit_page(request)
+
+    query = query[offset:offset + limit]
+
     list_post = []
 
     for data in query:
@@ -21,7 +27,10 @@ async def list_diary_post(request):
             'created_at': created_at,
         })
 
-    return JsonResponse(list_post, code=200, messages='Success Get Diary Data')
+    return JsonResponse(list_post, code=200, messages='Success Get Diary Data', meta={
+        'page': page,
+        'limit': limit}
+                        )
 
 
 @csrf_exempt

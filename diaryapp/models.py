@@ -12,5 +12,6 @@ class DiaryPost(models.Model):
     def __str__(self):
         return self.title
 
+    @staticmethod
     def get_list_diary_posts():
         return sync_to_async(list)(DiaryPost.objects.all())
