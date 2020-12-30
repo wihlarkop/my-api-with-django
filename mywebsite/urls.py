@@ -4,14 +4,12 @@ from django.conf.urls.static import static, settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blogapp.urls', namespace='blog')),
-    path('diary/', include('diaryapp.urls', namespace='diary')),
-    path('todo/', include('todoapp.urls', namespace='todo')),
-    path('yellowpages/', include('yellowpagesapp.urls', namespace='yellowpages')),
+    path('api/v1/blog/', include('blogapp.urls', namespace='blog')),
+    path('api/v1/diary/', include('diaryapp.urls', namespace='diary')),
+    path('api/v1/todo/', include('todoapp.urls', namespace='todo')),
+    path('api/v1/yellowpages/', include('yellowpagesapp.urls', namespace='yellowpages')),
+    path('api/v1/publicapi/', include('publicapiapp.urls', namespace='api')),
 ]
 
 if settings.DEBUG:
-    import debug_toolbar
-
-    urlpatterns += [path('__debug__/', include(debug_toolbar.urls)), ]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
