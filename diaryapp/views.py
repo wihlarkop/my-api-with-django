@@ -1,5 +1,6 @@
 import json
 
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import DiaryPost
@@ -21,6 +22,7 @@ async def list_diary_post(request):
         created_at = convert_format_datetime_from_queryset(raw_data_created_at)
 
         list_post.append({
+            'id': data.id,
             'title': data.title,
             'content': data.content,
             'created_at': created_at,
@@ -44,6 +46,7 @@ def add_diary_post(request):
 
     if title == '' or None:
         raise KeyError('Title is required')
+
     if content == '' or None:
         raise KeyError('Content is required')
 
@@ -55,12 +58,17 @@ def add_diary_post(request):
     diary = DiaryPost(**diary_data)
     diary.save()
 
-    return JsonResponse(data=diary_data, messages='Success Add Diary')
+    return JsonResponse(data=diary_data, messages='Success Add Diary', code=200)
 
 
-def edit_diary_post(request):
+def edit_diary_post(request, diaryid):
     pass
 
 
-def delete_diary_post(request):
-    pass
+def delete_diary_post(request, diaryid):
+    diary = get_object_or_404(DiaryPost, id=diaryid)
+
+    if diary:
+        diary.delete()
+
+    return JsonResponse(data=None, messages='Success Delete Diary', code=200)
