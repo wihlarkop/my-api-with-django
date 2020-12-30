@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'todoapp.apps.TodoappConfig',
     'blogapp.apps.BlogappConfig',
     'yellowpagesapp.apps.YellowpagesappConfig',
+    'publicapiapp.apps.PublicapiappConfig'
 
 ]
 
