@@ -13,6 +13,7 @@ async def list_diary_post(request):
     query = await DiaryPost.get_list_diary_posts()
 
     page, limit, offset = get_page_limit_offset_from_limit_page(request)
+
     query = query[offset:offset + limit]
 
     list_post = []
@@ -28,7 +29,7 @@ async def list_diary_post(request):
             'created_at': created_at,
         })
 
-    return JsonResponse(list_post,
+    return JsonResponse(data=list_post,
                         code=200,
                         messages='Success Get Diary Data',
                         meta={
