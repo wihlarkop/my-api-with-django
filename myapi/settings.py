@@ -13,8 +13,6 @@ DEBUG = os.getenv('DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = ['*']
 
-THIRD_PARTY_APPS = []
-
 DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,6 +29,8 @@ LOCAL_APPS = [
     'yellowpagesapi.apps.YellowpagesapiConfig'
 ]
 
+THIRD_PARTY_APPS = []
+
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -43,7 +43,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mywebsite.urls'
+ROOT_URLCONF = 'myapi.urls'
 
 TEMPLATES = [
     {
@@ -61,7 +61,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mywebsite.wsgi.application'
+WSGI_APPLICATION = 'myapi.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -101,3 +101,5 @@ STATICFILES_DIRS = BASE_DIR / 'static',
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
