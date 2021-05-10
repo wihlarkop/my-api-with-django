@@ -4,6 +4,8 @@ from django.conf.urls.static import static, settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/diary/', include('diaryapi.urls', namespace='diaryapi')),
+
 ]
 
 if settings.DEBUG:
