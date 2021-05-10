@@ -1,3 +1,4 @@
+from asgiref.sync import sync_to_async
 from django.db import models
 
 
@@ -9,3 +10,7 @@ class DiaryPost(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    @staticmethod
+    def get_list_diary_posts():
+        return sync_to_async(list)(DiaryPost.objects.all())
