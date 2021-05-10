@@ -10,6 +10,6 @@ class DiaryPostAdmin(admin.ModelAdmin):
         'title',
         'content',
         'created_at',
-        'modified_at'
+        'modified_at',
     )
-    ordering = 'created_at'
+    ordering = ('created_at',)
